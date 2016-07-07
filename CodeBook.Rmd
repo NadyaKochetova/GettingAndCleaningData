@@ -2,16 +2,10 @@ CodeBook
 ========================================================
 This is a code book that describes the variables, the data, and any transformations or work that was performed to clean up the data and generate tidy.txt file
 
-
-```{r}
-source("run_analysis.R")
-```
+For a full code description and full data transformation steps please see run_analysis.R file. 
 
 ## Variable list and description
-This are the first 12 columns of the final dataset:
-```{r}
-names(tidy)[1:10]
-```
+
 
 | Tables   |      Description      | 
 |:----------|:-------------|
@@ -24,11 +18,29 @@ There are 66 variables across 30 participants and 6 activities. Not all particip
 ```{r}
 str(tidy)
 ```
-
-Data sample
+Classes ‘grouped_df’, ‘tbl_df’, ‘tbl’ and 'data.frame':	40 obs. of  68 variables:
+ $ subjectId                                       : int  1 2 3 4 4 5 6 6 7 8 ...
+ $ activityName                                    : Factor w/ 6 levels "LAYING","SITTING",..: 4 4 4 4 6 4 4 6 6 6 ...
+ $ timeBodyAccelerator-mean()-X                    : num  0.266 0.273 0.273 0.277 0.27 ...
+ $ timeBodyAccelerator-mean()-Y                    : num  -0.0183 -0.0191 -0.0179 -0.0133 -0.0171 ...
+ $ timeBodyAccelerator-mean()-Z                    : num  -0.108 -0.116 -0.106 -0.106 -0.11 ...
+ $ timeBodyAccelerator-std()-X                     : num  -0.546 -0.606 -0.623 -0.684 -0.481 ...
+ $ timeBodyAccelerator-std()-Y                     : num  -0.368 -0.429 -0.48 -0.59 -0.384 ..
+ 
+## Data sample
 ```{r}
 head(tidy)
 ```
+Source: local data frame [6 x 68]
+Groups: subjectId [5]
+
+  subjectId     activityName timeBodyAccelerator-mean()-X timeBodyAccelerator-mean()-Y timeBodyAccelerator-mean()-Z
+      (int)           (fctr)                        (dbl)                        (dbl)                        (dbl)
+1         1          WALKING                    0.2656969                  -0.01829817                   -0.1078457
+2         2          WALKING                    0.2731131                  -0.01913232                   -0.1156500
+3         3          WALKING                    0.2734287                  -0.01785607                   -0.1064926
+4         4          WALKING                    0.2770345                  -0.01334968                   -0.1059161
+5         4 WALKING_UPSTAIRS                    0.2696859                  -0.01710851                   -0.1100534
 
 ## Data transformation steps
 * Load dplyr package by using library(dplyr) command
