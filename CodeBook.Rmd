@@ -1,0 +1,76 @@
+CodeBook
+========================================================
+This is a code book that describes the variables, the data, and any transformations or work that was performed to clean up the data and generate tidy.txt file
+
+
+```{r}
+source("run_analysis.R")
+```
+
+## Variable list and description
+This are the first 12 columns of the final dataset:
+```{r}
+names(tidy)[1:10]
+```
+
+| Tables   |      Description      | 
+|:----------|:-------------|
+| subjectId |  Subject identifier. Its range is from 1 to 30. |
+| activityName | Activity performed by individuals e.g. Walking, Sleeping etc | 
+| Measures | There are 66 observations in the set. The measures represent data that came from accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ. Example, timeBodyAccelerator-mean()-X ,timeGravityAccelerator-mean()-Y| 
+
+## Dataset Structure
+There are 66 variables across 30 participants and 6 activities. Not all participants have measures for each activity.
+```{r}
+str(tidy)
+```
+
+Data sample
+```{r}
+head(tidy)
+```
+
+## Data transformation steps
+* Load dplyr package by using library(dplyr) command
+* Loading x_train and x_test data sets
+```{r}
+x_train<-read.table(file="UCI HAR Dataset/train/X_train.txt")
+```
+* Loading metadata e.g. features, activities etc.
+```{r}
+act_labels <-read.table(file="UCI HAR Dataset/activity_labels.txt")
+features <-read.table(file="UCI HAR Dataset/features.txt")
+features <-features[,2]
+features_char<-as.character(features)
+```
+* Replacing numeric activity ids with names  e.g. Walking, Staying etc
+```{r}
+train_labels<-merge(y_train,act_labels)
+test_labels<-merge(y_test,act_labels)
+```
+* Binding data sets (both train and test) with corresponding subject data
+```{r}
+train<-cbind(subject_train,train_labels$V2,x_train)
+test<-cbind(subject_test,test_labels$V2,x_test)
+```
+* Union train and test data sets into a single set
+```{r}
+merged<-rbind(train,test)
+```
+* Using RegEx selecting columns that contain mean() or std() in their names. It reduces the set from 561 observations to 66.
+```{r}
+merged<-subset(merged, select = grep("mean\\(\\)|std\\(\\)|subjectId|activityName", names(merged),value=T))
+```
+* Replace selected column names with more meaningful onces e.g. Accelerator instead of Acc, time instead of t. Below is an example of the substring replacement for Acc.
+```{r}
+names(merged) <- gsub("Acc", "Accelerator", names(merged))
+```
+* Grouping data in a set by subjectId and activityName and aggregating values  using mean function.
+```{r}
+tidy<-merged %>% group_by(subjectId, activityName) %>% summarise_each(funs(mean))
+```
+* Publishing tidy.txt file
+```{r}
+write.table(tidy, file = "Tidy.txt", quote = FALSE,sep = ",",row.names = FALSE)
+```
+
