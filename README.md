@@ -1,19 +1,19 @@
 # GettingAndCleaningData
 This is a submission for the Coursera Getting and Cleaning Data Assignment. As a part of submission the following files are provided:
-1. run_analysis.R file (pleasee see its purpose  below)
-2. Tidy.txt - a final data set genarated by run_analysis.R script. Note there was no clear definition on how the final dataset should look like. The attached tidy.txt file complies with the following principles:
-  a) each variable is in one column
-  b) different oservations of the variables are in different columns e.g. subjectId, activityName
-3. CodeBook.md describes the variables, the data and any transformation that has been performed to clean up the data. 
+* run_analysis.R file (pleasee see its purpose  below)
+* Tidy.txt - a final data set genarated by run_analysis.R script. Note there was no clear definition on how the final dataset should look like. The attached tidy.txt file complies with the following principles:
+  * a) each variable is in one column
+  * b) different oservations of the variables are in different columns e.g. subjectId, activityName
+* CodeBook.md describes the variables, the data and any transformation that has been performed to clean up the data. 
 
 To get a final dataset please following the steps:
-1. Download Coursera's materials from below and unzip the files. It could be done programmatically but is out of scope of this assignment. 
-2. Set your working directory using setwd() command to a folder with unzipped data.
-3. Execute run_analysis.R script
-4. If no errors occurs, a final dataset tidy.txt should be generated in the working directory.
+* Download Coursera's materials from below and unzip the files. It could be done programmatically but is out of scope of this assignment. 
+* Set your working directory using setwd() command to a folder with unzipped data.
+* Execute run_analysis.R script
+* If no errors occurs, a final dataset tidy.txt should be generated in the working directory.
 
 
-Original requirement from Coursera:
+**Original requirement from Coursera:**
 
 The purpose of this project is to demonstrate your ability to collect, work with, and clean a data set. The goal is to prepare tidy data that can be used for later analysis. You will be graded by your peers on a series of yes/no questions related to the project. You will be required to submit: 1) a tidy data set as described below, 2) a link to a Github repository with your script for performing the analysis, and 3) a code book that describes the variables, the data, and any transformations or work that you performed to clean up the data called CodeBook.md. You should also include a README.md in the repo with your scripts. This repo explains how all of the scripts work and how they are connected.
 
