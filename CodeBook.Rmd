@@ -11,7 +11,7 @@ For a full code description and full data transformation steps please see run_an
 |:----------|:-------------|
 | subjectId |  Subject identifier. Its range is from 1 to 30. |
 | activityName | Activity performed by individuals e.g. Walking, Sleeping etc | 
-| Measures | There are 66 observations in the set. The measures represent data that came from accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ. Example, timeBodyAccelerator-mean()-X ,timeGravityAccelerator-mean()-Y| 
+| timeBodyAccelerator-mean()-X | There are 66 observations in the set. The measures represent data that came from accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ. Example, timeBodyAccelerator-mean()-X ,timeGravityAccelerator-mean()-Y| 
 
 ## Dataset Structure
 There are 66 variables across 30 participants and 6 activities. Not all participants have measures for each activity.
