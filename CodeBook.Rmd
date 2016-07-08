@@ -11,22 +11,30 @@ For a full code description and full data transformation steps please see run_an
 |:----------|:-------------|
 | subjectId |  Subject identifier. Its range is from 1 to 30. |
 | activityName | Activity performed by individuals e.g. Walking, Sleeping etc | 
-| timeBodyAccelerator-mean()-X | There are 66 observations in the set. The measures represent data that came from accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ. Example, timeBodyAccelerator-mean()-X ,timeGravityAccelerator-mean()-Y| 
+| timeBodyAccelerator-mean()-X | There are 66 observations in the set. The measures represent data that came from accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ. | 
+| timeBodyAccelerator-mean()-Y ||
+| timeBodyAccelerator-mean()-Z ||
+| ... ||
+| timeGravityAccelerator-mean()-Z ||
+
 
 ## Dataset Structure
-There are 66 variables across 30 participants and 6 activities. Not all participants have measures for each activity.
+There are 66 variables across 30 participants and 6 activities e.g. Walking, Sleeping etc. 
 ```{r}
 str(tidy)
 ```
+This is a part of the str(tidy) result:
+
 Classes ‘grouped_df’, ‘tbl_df’, ‘tbl’ and 'data.frame':	40 obs. of  68 variables:
- $ subjectId                                       : int  1 2 3 4 4 5 6 6 7 8 ...
- $ activityName                                    : Factor w/ 6 levels "LAYING","SITTING",..: 4 4 4 4 6 4 4 6 6 6 ...
- $ timeBodyAccelerator-mean()-X                    : num  0.266 0.273 0.273 0.277 0.27 ...
- $ timeBodyAccelerator-mean()-Y                    : num  -0.0183 -0.0191 -0.0179 -0.0133 -0.0171 ...
- $ timeBodyAccelerator-mean()-Z                    : num  -0.108 -0.116 -0.106 -0.106 -0.11 ...
- $ timeBodyAccelerator-std()-X                     : num  -0.546 -0.606 -0.623 -0.684 -0.481 ...
- $ timeBodyAccelerator-std()-Y                     : num  -0.368 -0.429 -0.48 -0.59 -0.384 ..
- 
+|:----------|:-------------|
+|$ subjectId|: int  1 2 3 4 4 5 6 6 7 8 ...|
+| $ activityName                          |          : Factor w/ 6 levels "LAYING","SITTING",..: 4 4 4 4 6 4 4 6 6 6 ...|
+ |$ timeBodyAccelerator-mean()-X          |          : num  0.266 0.273 0.273 0.277 0.27 ...||
+| $ timeBodyAccelerator-mean()-Y          |          : num  -0.0183 -0.0191 -0.0179 -0.0133 -0.0171 ...|
+ |$ timeBodyAccelerator-mean()-Z           |         : num  -0.108 -0.116 -0.106 -0.106 -0.11 ...|
+| $ timeBodyAccelerator-std()-X             |        : num  -0.546 -0.606 -0.623 -0.684 -0.481 ...|
+| $ timeBodyAccelerator-std()-Y              |       : num  -0.368 -0.429 -0.48 -0.59 -0.384 ..|
+ |
 ## Data sample
 ```{r}
 head(tidy)
