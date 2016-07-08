@@ -27,7 +27,7 @@ This is a part of the str(tidy) result:
 
 Classes ‘grouped_df’, ‘tbl_df’, ‘tbl’ and 'data.frame':	40 obs. of  68 variables:
 
-| Tables   |      Description      | 
+| Field   |      Structure Details      | 
 |:----------|:-------------|
 |$ subjectId| int  1 2 3 4 4 5 6 6 7 8 ...|
 |$ activityName                          |  Factor w/ 6 levels "LAYING","SITTING",..: 4 4 4 4 6 4 4 6 6 6 ...|
@@ -44,13 +44,14 @@ head(tidy)
 Source: local data frame [6 x 68]
 Groups: subjectId [5]
 
-  subjectId     activityName timeBodyAccelerator-mean()-X timeBodyAccelerator-mean()-Y timeBodyAccelerator-mean()-Z
-      (int)           (fctr)                        (dbl)                        (dbl)                        (dbl)
-1         1          WALKING                    0.2656969                  -0.01829817                   -0.1078457
-2         2          WALKING                    0.2731131                  -0.01913232                   -0.1156500
-3         3          WALKING                    0.2734287                  -0.01785607                   -0.1064926
-4         4          WALKING                    0.2770345                  -0.01334968                   -0.1059161
-5         4 WALKING_UPSTAIRS                    0.2696859                  -0.01710851                   -0.1100534
+| subjectId   |      activityName      | timeBodyAccelerator-mean()-X |timeBodyAccelerator-mean()-Y|timeBodyAccelerator-mean()-Z|...|
+|:----------|:-------------|:-------------|:-------------|:-------------|:-------------|
+|      (int)|           (fctr) |                       (dbl) |                       (dbl) |                       (dbl)|...|
+|1         |1          |WALKING                    |0.2656969                 |-0.01829817  |                 -0.1078457||
+|2         |2          |WALKING                    |0.2731131                 |-0.01913232   |                -0.1156500||
+|3         |3          |WALKING                    |0.2734287                 |-0.01785607  |                 -0.1064926||
+|4         |4          |WALKING                    |0.2770345                 |-0.01334968  |                 -0.1059161||
+|5         |4          |WALKING_UPSTAIRS           |0.2696859                 |-0.01710851  |                 -0.1100534||
 
 ## Data transformation steps
 * Load dplyr package by using library(dplyr) command
