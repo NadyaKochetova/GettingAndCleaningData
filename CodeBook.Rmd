@@ -66,34 +66,53 @@ features <-read.table(file="UCI HAR Dataset/features.txt")
 features <-features[,2]
 features_char<-as.character(features)
 ```
-* Replacing numeric activity ids with names  e.g. Walking, Staying etc
+
+* Bind together main sets (x_train and x_test) with its labels and subjects
 ```{r}
-train_labels<-merge(y_train,act_labels)
-test_labels<-merge(y_test,act_labels)
+train<-cbind(subjectId=subject_train$V1, activityId=y_train$V1,x_train )
+test<-cbind(subjectId=subject_test$V1, activityId=y_test$V1,x_test)
 ```
-* Binding data sets (both train and test) with corresponding subject data
-```{r}
-train<-cbind(subject_train,train_labels$V2,x_train)
-test<-cbind(subject_test,test_labels$V2,x_test)
-```
-* Union train and test data sets into a single set
+* Now union the test and train sets 
 ```{r}
 merged<-rbind(train,test)
 ```
-* Using RegEx selecting columns that contain mean() or std() in their names. It reduces the set from 561 observations to 66.
+* Add descriptions of the activities to enrich the data
+```{r}
+merged<-merge(act_labels,merged,  by="activityId")
+```
+
+* Clean up the merged dataset by removing redundant columns
+```{r}
+merged<-merged[ , !(names(merged) %in% c("activityId", "activityName.y"))]
+```
+
+* Rename activiyName.x column to activityName
+```{r}
+names(merged)[1] <- "activityName"
+```
+* Name the columns of the merged set 
+```{r}
+names(merged)[3:563]<-features_char[1:561]
+```
+
+* Extract only required columns plus subjectId and activityName
 ```{r}
 merged<-subset(merged, select = grep("mean\\(\\)|std\\(\\)|subjectId|activityName", names(merged),value=T))
 ```
-* Replace selected column names with more meaningful onces e.g. Accelerator instead of Acc, time instead of t. Below is an example of the substring replacement for Acc.
+* Appropriately labels the data set with descriptive variable names
 ```{r}
 names(merged) <- gsub("Acc", "Accelerator", names(merged))
 ```
-* Grouping data in a set by subjectId and activityName and aggregating values  using mean function.
+
+...
+
+
+* Generate an independent tidy data set with the average of each variable  for each activity and each subject (e.g. person).
 ```{r}
 tidy<-merged %>% group_by(subjectId, activityName) %>% summarise_each(funs(mean))
+write.table(tidy, file = "tidy.txt", quote = FALSE,sep = ",",row.names = FALSE)
+
 ```
-* Publishing tidy.txt file
-```{r}
-write.table(tidy, file = "Tidy.txt", quote = FALSE,sep = ",",row.names = FALSE)
-```
+
+
 
