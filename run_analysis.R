@@ -1,6 +1,6 @@
 #run_analysis.R
 #Merges the training and the test sets to create one data set.
-
+library(dplyr)
 #read x_train data
 x_train<-read.table(file="UCI HAR Dataset/train/X_train.txt")
 #read subject train data e.g. subject id 
@@ -17,6 +17,7 @@ y_test<-read.table(file="UCI HAR Dataset/test/y_test.txt")
 
 #read activity labels file. We will need it to describe activities e.g. Walking, Sleeping etc
 act_labels <-read.table(file="UCI HAR Dataset/activity_labels.txt")
+names(act_labels)<-c("activityId", "activityName")
 
 #read activity labels file. We will need it to describe measurements
 features <-read.table(file="UCI HAR Dataset/features.txt")
@@ -26,21 +27,22 @@ features_char<-as.character(features)
 
 # replace numeric training labels with well-names  e.g. Walking, Staying etc
 #Uses descriptive activity names to name the activities in the data sets
-train_labels<-merge(y_train,act_labels)
-test_labels<-merge(y_test,act_labels)
+#train_labels<-merge(y_train,act_labels)
+#test_labels<-merge(y_test,act_labels)
 
+#bind together main sets (x_train and x_test) with its labels and subjects
+train<-cbind(subjectId=subject_train$V1, activityId=y_train$V1,x_train )
+test<-cbind(subjectId=subject_test$V1, activityId=y_test$V1,x_test)
 
-#bind together main sets (x_train and x_test) with labels and subjects
-train<-cbind(subject_train,train_labels$V2,x_train)
-test<-cbind(subject_test,test_labels$V2,x_test)
-
-#name the columns in the x_train set using features_char that contains measurement names
-# this is required for a union of the both sets later on
-names(train)[1:2]<-c("subjectId", "activityName") 
-names(test)[1:2]<-c("subjectId", "activityName") 
 
 #now union the test and train sets 
 merged<-rbind(train,test)
+# add descriptions of the activities to enrich the data
+merged<-merge(act_labels,merged,  by="activityId")
+# clean up the merged dataset by removing redundant columns
+merged<-merged[ , !(names(merged) %in% c("activityId", "activityName.y"))]
+# rename activiyName.x column to activityName
+names(merged)[1] <- "activityName"
 
 #name the columns of the merged set 
 names(merged)[3:563]<-features_char[1:561]
@@ -60,6 +62,6 @@ names(merged) <- gsub("^f", "frequency", names(merged))
 #for each activity and each subject (e.g. person).
 
 tidy<-merged %>% group_by(subjectId, activityName) %>% summarise_each(funs(mean))
-write.table(tidy, file = "Tidy.txt", quote = FALSE,sep = ",",row.names = FALSE)
+write.table(tidy, file = "tidy.txt", quote = FALSE,sep = ",",row.names = FALSE)
 
 
