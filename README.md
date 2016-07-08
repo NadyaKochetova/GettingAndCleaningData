@@ -1,6 +1,6 @@
 # GettingAndCleaningData
 This is a submission for the Coursera Getting and Cleaning Data Assignment. As a part of submission the following files are provided:
-* run_analysis.R file that contains the R code to generate a final dataset in the tidy.txt from the raw data provided by Coursera. See below the links to the raw data. CodeBook.rmd contains basic details about the final dataset and some code samples. run_analysis.R is well-commented. Note dplyr package needs to be installed to run the script successfully.
+* run_analysis.R file that contains the R code to generate a final dataset in the tidy.txt from the raw data provided by Coursera. See below the links to the raw data. CodeBook.rmd contains basic details about the final dataset and some code samples. run_analysis.R is well-commented so you can see full description of the data tramsformation steps in the R script. Note dplyr package needs to be installed to run the script successfully.
  
 * Tidy.txt - a final data set (comma delimted TXT file, no quotes) genarated by run_analysis.R script. Note there was no clear definition on how the final dataset should look like. The attached tidy.txt file complies with the following principles:
   * a) each variable is in one column
