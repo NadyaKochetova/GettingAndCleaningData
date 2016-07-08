@@ -55,7 +55,7 @@ Groups: subjectId [5]
 |        1 |  WALKING_UPSTAIRS   |         0.2554617 |                -0.023953149  |                 -0.0973020||
 ## Data transformation steps
 * Load dplyr package by using library(dplyr) command
-* Loading x_train and x_test data sets
+* Loading x_train and x_test data sets. Full code is in the run_analysis.R.
 ```{r}
 x_train<-read.table(file="UCI HAR Dataset/train/X_train.txt")
 ```
