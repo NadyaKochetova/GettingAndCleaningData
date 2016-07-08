@@ -47,12 +47,12 @@ Groups: subjectId [5]
 | subjectId   |      activityName      | timeBodyAccelerator-mean()-X |timeBodyAccelerator-mean()-Y|timeBodyAccelerator-mean()-Z|...|
 |:----------|:-------------|:-------------|:-------------|:-------------|:-------------|
 |      (int)|           (fctr) |                       (dbl) |                       (dbl) |                       (dbl)|...|
-|1         |1          |WALKING                    |0.2656969                 |-0.01829817  |                 -0.1078457||
-|2         |2          |WALKING                    |0.2731131                 |-0.01913232   |                -0.1156500||
-|3         |3          |WALKING                    |0.2734287                 |-0.01785607  |                 -0.1064926||
-|4         |4          |WALKING                    |0.2770345                 |-0.01334968  |                 -0.1059161||
-|5         |4          |WALKING_UPSTAIRS           |0.2696859                 |-0.01710851  |                 -0.1100534||
-
+ |        1 |            LAYING |           0.2215982 |                -0.040513953|                   -0.1132036||
+ |        1 |           SITTING  |          0.2612376 |                -0.001308288 |                  -0.1045442||
+  |       1 |          STANDING  |          0.2789176 |                -0.016137590 |                  -0.1106018||
+ |        1 |           WALKING    |        0.2773308 |                -0.017383819 |                  -0.1111481||
+ |        1 |WALKING_DOWNSTAIRS   |         0.2891883 |                -0.009918505  |                 -0.1075662||
+ |        1 |  WALKING_UPSTAIRS   |         0.2554617 |                -0.023953149  |                 -0.0973020||
 ## Data transformation steps
 * Load dplyr package by using library(dplyr) command
 * Loading x_train and x_test data sets
